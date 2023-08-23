@@ -5,12 +5,12 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-insert into cadeira (id,cor,modelo,material)
-values ( 1, 'branca' , '1759' , 'plastico');
+insert into cadeira (cor,modelo,material)
+values ('branca' , '1759' , 'plastico');
 
 
-insert into cadeira (id,cor,modelo,material)
-values (2,'preta' , '1911' , 'ferro');
+insert into cadeira (cor,modelo,material)
+values ('preta' , '1911' , 'ferro');
 
-insert into cadeira (id,cor,modelo,material)
-values (3,'marrom' , '2012' , 'plastico ruim');
+insert into cadeira (cor,modelo,material)
+values ('marrom' , '2012' , 'plastico ruim');

@@ -1,11 +1,17 @@
 package br.unitins.topicos1.modelo;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 
-public class Cadeira extends PanacheEntity {
+public class Cadeira {
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    private Long id;
     private String cor;
     private String modelo;
     private String material;
@@ -34,4 +40,12 @@ public class Cadeira extends PanacheEntity {
         this.material = material;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
 }
