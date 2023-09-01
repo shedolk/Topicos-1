@@ -9,6 +9,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CadeiraRepository implements PanacheRepository<Cadeira> {
     public List<Cadeira> findByNome(String nome) {
-       return find("UPPER (nome) LIKE UPPER (?1) " , "&"+nome+"&").list();
+       return find("UPPER(nome) LIKE UPPER(?1) ", "&"+nome+"&").list();
     }
 }
+    
+
+
