@@ -1,5 +1,11 @@
 package br.unitins.topicos1.modelo;
 
+import java.time.LocalDate;
+
+import org.hibernate.service.JavaServiceLoadable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +26,9 @@ public class Cadeira {
 
     @Column(length = 20)
     private String material;
+
+    
+    public LocalDate dataCadastro;
 
     public Long getId() {
         return id;
@@ -51,6 +60,14 @@ public class Cadeira {
 
     public void setMaterial(String material) {
         this.material = material;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }
 

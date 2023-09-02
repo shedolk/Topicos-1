@@ -1,7 +1,9 @@
 package br.unitins.topicos1.resource;
 
+import br.unitins.topicos1.dto.CadeiraDTO;
 import br.unitins.topicos1.modelo.Cadeira;
 import br.unitins.topicos1.repository.CadeiraRepository;
+import br.unitins.topicos1.service.CadeiraService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -22,58 +24,42 @@ import java.util.List;
 public class CadeiraResource {
 
     @Inject
-    CadeiraRepository repository;
+    CadeiraService service;
 
     @POST
     @Transactional
-    public Cadeira insert(Cadeira cadeira) {
-        Cadeira novaCadeira = new Cadeira();
-        novaCadeira.setModelo(cadeira.getModelo());
-        novaCadeira.setMaterial(cadeira.getMaterial());
-
-        repository.persist(novaCadeira);
-
-        return novaCadeira;
+    public Cadeira insert(CadeiraDTO dto) {
+        return service.insert(dto);
     }
 
     @GET
     public List<Cadeira> findAll() {
-        return repository.listAll();
+        return service.findByAll();
     }
 
     @GET
     @Path("/{id}")
-    public Cadeira findAById(@PathParam("id") Long id) {
-        return repository.findById(id);
+    public Cadeira findById(@PathParam("id") Long id) {
+        return service.findById(id);
     }
 
     @GET
     @Path("/search/nome/{nome}")
-    public List<Cadeira> findAByNome(@PathParam("nome") String nome) {
-        return repository.findByNome(nome);
+    public List<Cadeira> findByNome(@PathParam("nome") String nome) {
+        return service.findByNome(nome);
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Cadeira update(@PathParam("id") Long id, Cadeira cadeira) {
-        Cadeira cadeiraExistente = repository.findById(id);
-        if (cadeiraExistente != null) {
-            cadeiraExistente.setModelo(cadeira.getModelo());
-            cadeiraExistente.setMaterial(cadeira.getMaterial());
-
-            return cadeiraExistente;
-        }
-        return null;
+    public Cadeira update(@PathParam("id") Long id, CadeiraDTO dto) {
+        return service.update(dto, id);
     }
 
     @DELETE
     @Path("/{id}")
     @Transactional
     public void delete(@PathParam("id") Long id) {
-        Cadeira cadeira = repository.findById(id);
-        if (cadeira != null) {
-            repository.delete(cadeira);
-        }
+        service.delete(id);
     }
 }
