@@ -18,7 +18,8 @@ public class CadeiraServiceImpl implements CadeiraService {
     @Transactional
     public Cadeira insert(CadeiraDTO dto) {
         Cadeira novaCadeira = new Cadeira();
-        novaCadeira.setModelo(dto.getNome());
+        novaCadeira.setModelo(dto.getModelo());
+        novaCadeira.setNome(dto.getNome());
         novaCadeira.setMaterial(dto.getMaterial());
 
         repository.persist(novaCadeira);
